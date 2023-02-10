@@ -508,8 +508,14 @@ const SizedBox(height: 50 ,),
                 // TextEditingController.
                 content:
                 
-                 Text(' Possible curent Status:$Status\n \n Probability:$s' ),
-              );
+                 Text(' Possible curent Status:$Status\n \n Probability:$s' ,
+                 style: GoogleFonts.itim(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+              ),
+              ));
             },
           );
                                     
