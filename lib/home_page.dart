@@ -28,6 +28,7 @@ double skin = 0;
   double blood = 0;
   double imc = 0;
   double age = 0;
+  
 
     
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -444,7 +445,12 @@ const SizedBox(height: 50 ,),
                 description: '',
                 onPressed: () async {
                   print('lets start');        
-               
+               skin= double.parse(skinController.text);
+  glucose= double.parse(glucoseController.text);
+  pedigre= double.parse(pedigreController.text);
+  blood= double.parse(bloodController.text);
+  imc= double.parse(imcController.text);
+  age= double.parse(ageController.text);
 
                   var user = Postmodel(
                     globalParameters:GlobalParameters() ,
@@ -459,12 +465,12 @@ const SizedBox(height: 50 ,),
                       'Class variable (0 or 1)'  
                     ],
                     values: [[
-                       '10',
-                      '10',
-                      '10',
-                      '10',
-                      '1',
-                      '50',
+                        '$glucose',
+                      '$blood',
+                      '$skin',
+                      '$imc',
+                      '$pedigre',
+                      '$age',
                       '0',
                     ]]
                     )
@@ -478,8 +484,19 @@ const SizedBox(height: 50 ,),
                      
                           Map<String, dynamic> map = json.decode(response);
                           List<dynamic> data = map["Results"]['output1']['value']['Values'];
-                            var s=data[0][1];
+                            String s=data[0][1];
                                   print(s);
+                                  String p=data[0][0];
+                                  print(p);
+                                   String Status='';
+                                  if(p=='1')
+                                  {
+                                     Status='Diabetic';
+                                  }
+                                  if(p=='0')
+                                  {
+                                     Status='Non Diabetic';
+                                  }
 
 
                                   
@@ -489,7 +506,9 @@ const SizedBox(height: 50 ,),
               return AlertDialog(
                 // Retrieve the text the that user has entered by using the
                 // TextEditingController.
-                content: Text('Probability:$s'),
+                content:
+                
+                 Text(' Possible curent Status:$Status\n \n Probability:$s' ),
               );
             },
           );
