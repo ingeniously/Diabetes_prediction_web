@@ -15,13 +15,13 @@ class HomePage extends StatefulWidget {
 
 class MyHomePage extends  State<HomePage>  {
    MyHomePage({Key? key}) : super();
- TextEditingController skinController = TextEditingController(text: '');
-  TextEditingController glucoseController = TextEditingController(text: '');
-   TextEditingController pedigreController = TextEditingController(text: '');
-  //TextEditingController insulineController = TextEditingController(text: '');
-  TextEditingController bloodController = TextEditingController(text: '');
-  TextEditingController imcController = TextEditingController(text: '');
-  TextEditingController ageController = TextEditingController(text: '');
+ TextEditingController skinController = TextEditingController();
+  TextEditingController glucoseController = TextEditingController();
+   TextEditingController pedigreController = TextEditingController();
+  //TextEditingController insulineController = TextEditingController();
+  TextEditingController bloodController = TextEditingController();
+  TextEditingController imcController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
 double skin = 0;
   double glucose = 0;
   double pedigre = 0;
@@ -33,14 +33,6 @@ double skin = 0;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 
-  void _resetFields() {
-    skinController.text = "";
-    glucoseController.text = "";
-    pedigreController.text = "";
- ageController.text = "";
-    imcController.text = "";
-     bloodController.text = "";
-   }
 
    
   @override
@@ -451,6 +443,9 @@ const SizedBox(height: 50 ,),
                 operationColor: Color.fromARGB(255, 244, 3, 3),
                 description: '',
                 onPressed: () async {
+                  print('lets start');        
+               
+
                   var user = Postmodel(
                     globalParameters:GlobalParameters() ,
                     inputs: Inputs(input1: Input1(
@@ -464,12 +459,12 @@ const SizedBox(height: 50 ,),
                       'Class variable (0 or 1)'  
                     ],
                     values: [[
-                      '$glucose',
-                      '$blood',
-                      '$skin',
-                      '$imc',
-                      '$pedigre',
-                      '$age',
+                      '148',
+                      '72',
+                      '35',
+                      '33.6',
+                      '0.627',
+                      '50',
                       '0',
                     ]]
                     )
@@ -477,19 +472,17 @@ const SizedBox(height: 50 ,),
                                     ),
                   );
                   var response = await BaseClient().post(user).catchError((err) {});
-                  if (response == null) return;
-                   
-          Map<String, dynamic> map = json.decode(response);
-List<dynamic> data = map["Results"]['output1']['value']['Values'];
-var s=data[0][1];
-print(s);
-  skin= double.parse(skinController.text);
-  glucose= double.parse(glucoseController.text);
-  pedigre= double.parse(pedigreController.text);
-  blood= double.parse(bloodController.text);
-  imc= double.parse(imcController.text);
-  age= double.parse(ageController.text);
+                    if (response==null)return;
+                      debugPrint(response);
+                      print('123');
+                     
+                          Map<String, dynamic> map = json.decode(response);
+                          List<dynamic> data = map["Results"]['output1']['value']['Values'];
+                            var s=data[0][1];
+                                  print(s);
 
+
+                                  
  showDialog(
             context: context,
             builder: (context) {
@@ -500,6 +493,7 @@ print(s);
               );
             },
           );
+                                    
                 },
               ),
               ),

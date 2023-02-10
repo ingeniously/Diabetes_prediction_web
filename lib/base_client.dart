@@ -17,7 +17,7 @@ class BaseClient {
     };
 
     var response = await client.get(url, headers: _headers);
-    if (response.statusCode == 201 ) {
+    if (response.statusCode == 200 ) {
       
       return response.body;
     } else {
@@ -33,6 +33,9 @@ class BaseClient {
     var _headers = {
       'Authorization': 'Bearer +E8e8CKkgUC86lR3Zbhx8aDJu81qPIWv2iE7tar0NaMgTFR23V3v8mXqyl3i7dYLtd3mlLeZjd8G+AMC9KuJHw==',
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin':'*',
+      'Access-Control-Allow-Methods':'GET,PUT,PATCH,POST,DELETE',
+      'Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Accept'
     
     };
 
