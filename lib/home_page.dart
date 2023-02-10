@@ -22,6 +22,7 @@ class MyHomePage extends  State<HomePage>  {
   TextEditingController bloodController = TextEditingController();
   TextEditingController imcController = TextEditingController();
   TextEditingController ageController = TextEditingController();
+  
 double skin = 0;
   double glucose = 0;
   double pedigre = 0;
@@ -441,7 +442,7 @@ const SizedBox(height: 50 ,),
                 child:              
               AppButton(
                 operation: 'Analyse',
-                operationColor: Color.fromARGB(255, 244, 3, 3),
+                operationColor: Color.fromARGB(255, 50, 200, 160),
                 description: '',
                 onPressed: () async {
                   print('lets start');        
@@ -491,14 +492,19 @@ const SizedBox(height: 50 ,),
                                    String Status='';
                                   if(p=='1')
                                   {
-                                     Status='Diabetic';
+                                     Status='DIABETIC';
                                   }
                                   if(p=='0')
                                   {
-                                     Status='Non Diabetic';
+                                     Status='NON DIABETIC';
                                   }
 
-
+skinController.text='';
+bloodController.text='';
+pedigreController.text='';
+imcController.text='';
+ageController.text='';
+glucoseController.text='';
                                   
  showDialog(
             context: context,
@@ -508,10 +514,10 @@ const SizedBox(height: 50 ,),
                 // TextEditingController.
                 content:
                 
-                 Text(' Possible curent Status:$Status\n \n Probability:$s' ,
-                 style: GoogleFonts.itim(
+                 Text(' *********Results******** \n \n  \n Possible current Status:  $Status\n \n Probability:  $s' ,
+                 style: GoogleFonts.monda(
                         color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 30,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.italic,
               ),
