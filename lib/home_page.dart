@@ -35,6 +35,7 @@ double skin = 0;
      bloodController.text = "";
    }
    
+   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
