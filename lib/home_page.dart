@@ -5,9 +5,16 @@ import 'package:http_methods/app_button.dart';
 import 'package:http_methods/base_client.dart';
 import 'package:http_methods/user.dart';
 import 'package:http_methods/result_model.dart';
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key});
+ 
+  @override
+  State<HomePage> createState() => MyHomePage();
+}
 
-class HomePage extends StatelessWidget {
-   HomePage({Key? key}) : super(key: key);
+
+class MyHomePage extends  State<HomePage>  {
+   MyHomePage({Key? key}) : super();
  TextEditingController skinController = TextEditingController(text: '');
   TextEditingController glucoseController = TextEditingController(text: '');
    TextEditingController pedigreController = TextEditingController(text: '');
@@ -475,6 +482,7 @@ const SizedBox(height: 50 ,),
           Map<String, dynamic> map = json.decode(response);
 List<dynamic> data = map["Results"]['output1']['value']['Values'];
 var s=data[0][1];
+print(s);
   skin= double.parse(skinController.text);
   glucose= double.parse(glucoseController.text);
   pedigre= double.parse(pedigreController.text);
@@ -504,7 +512,7 @@ var s=data[0][1];
                 children: [
                  SizedBox(height:50 ,),
               Text(
-              "Warning:This Web interface as been build for learning purpose.It use an Artificial Neural network trained with a limited amount of data.Then the results\n provided can be biased and not applicable to  everybody.I dont take any Engagement or responability About The usage and the accuracy of the results\n provided",
+              "Warning:This Web interface as been build for learning purpose.It use an Artificial Neural network trained with a limited amount of data\n.Then the results provided can be biased and not applicable to  everybody.I dont take any Engagement or responability About The usage and the\n accuracy of the results provided",
           style: GoogleFonts.itim(
                         color: Color.fromARGB(255, 0, 0, 0),
                         fontSize: 20,
