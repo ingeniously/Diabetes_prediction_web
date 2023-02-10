@@ -34,7 +34,7 @@ double skin = 0;
     imcController.text = "";
      bloodController.text = "";
    }
-   
+
    
   @override
   Widget build(BuildContext context) {
@@ -457,12 +457,12 @@ const SizedBox(height: 50 ,),
                       'Class variable (0 or 1)'  
                     ],
                     values: [[
-                      'skin',
-                      '72',
-                      '25',
-                      '33.6',
-                      '0.627',
-                      '50',
+                      '$glucose',
+                      '$blood',
+                      '$skin',
+                      '$imc',
+                      '$pedigre',
+                      '$age',
                       '0',
                     ]]
                     )
@@ -474,7 +474,7 @@ const SizedBox(height: 50 ,),
                    
           Map<String, dynamic> map = json.decode(response);
 List<dynamic> data = map["Results"]['output1']['value']['Values'];
-print(data[0][1]);
+var s=data[0][1];
   skin= double.parse(skinController.text);
   glucose= double.parse(glucoseController.text);
   pedigre= double.parse(pedigreController.text);
@@ -482,6 +482,16 @@ print(data[0][1]);
   imc= double.parse(imcController.text);
   age= double.parse(ageController.text);
 
+ showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                // Retrieve the text the that user has entered by using the
+                // TextEditingController.
+                content: Text('Probability:$s'),
+              );
+            },
+          );
                 },
               ),
               ),
