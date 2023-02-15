@@ -481,15 +481,18 @@ const SizedBox(height: 50 ,),
                   var response = await BaseClient().post(user).catchError((err) {});
                     if (response==null)return;
                       debugPrint(response);
-                      print('123');
+
                      
                           Map<String, dynamic> map = json.decode(response);
                           List<dynamic> data = map["Results"]['output1']['value']['Values'];
                             String s=data[0][1];
-                                  print(s);
+                                 
+                                  var porcentage=double.parse(s);
+                                  var pourcentage=porcentage*100;
+                                   print(pourcentage*100);
                                   String p=data[0][0];
                                   print(p);
-                                   String Status='';
+                                  String Status='';
                                   if(p=='1')
                                   {
                                      Status='DIABETIC';
@@ -514,7 +517,7 @@ glucoseController.text='';
                 // TextEditingController.
                 content:
                 
-                 Text(' *********Results******** \n \n  \n Possible current Status:  $Status\n \n Probability:  $s' ,
+                 Text(' ************Results************* \n \n Possible current Status:  $Status\n \n Probability:  $pourcentage %' ,
                  style: GoogleFonts.monda(
                         color: Color.fromARGB(255, 0, 0, 0),
                         fontSize: 20,
